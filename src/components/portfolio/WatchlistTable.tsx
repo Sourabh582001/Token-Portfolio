@@ -10,6 +10,8 @@ import {
 import { getWatchlistData } from '../../services/coinGeckoService';
 import AddTokenModal from '../modals/AddTokenModal';
 import './WatchlistTable.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faRotate } from '@fortawesome/free-solid-svg-icons';
 
 const WatchlistTable = () => {
   const dispatch = useAppDispatch();
@@ -135,11 +137,11 @@ const WatchlistTable = () => {
       <div className="watchlist-header">
         <h2>Watchlist</h2>
         <div className="watchlist-actions">
-          <button className="add-token-button" onClick={() => setIsAddTokenModalOpen(true)}>
-            Add Token
-          </button>
           <button className="refresh-button" onClick={handleRefreshPrices}>
-            Refresh Prices
+            <FontAwesomeIcon icon={faRotate} /> Refresh Prices
+          </button>
+          <button className="add-token-button" onClick={() => setIsAddTokenModalOpen(true)}>
+            <FontAwesomeIcon icon={faPlus} /> Add Token
           </button>
         </div>
       </div>
@@ -180,6 +182,7 @@ const WatchlistTable = () => {
                       <input
                         type="number"
                         value={holdingsInput}
+                        placeholder='Select'
                         onChange={(e) => setHoldingsInput(e.target.value)}
                         min="0"
                         step="0.000001"

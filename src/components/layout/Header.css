@@ -16,10 +16,60 @@
   align-items: center;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
 .logo h1 {
   margin: 0;
   font-size: 1.5rem;
   color: #ffffff;
+}
+
+.connect-wallet-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #A9E851;
+  color: #000000;
+  border: none;
+  border-radius: 100px;
+  padding: 6px 10px 6px 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.connect-wallet-button:hover {
+  background-color: #98d045;
+}
+
+.wallet-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.connected-container {
+  display: flex;
+  gap: 8px;
+}
+
+.chain-button, .account-button {
+  background-color: #27272A;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .mobile-menu-toggle {

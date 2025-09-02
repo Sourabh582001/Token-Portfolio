@@ -16,18 +16,19 @@
 }
 
 .add-token-button {
-  background-color: #0E76FD;
-  color: white;
+  background-color: #A9E851;
+  color: black;
   border: none;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  padding: 8px 12px 8px 12px;
   cursor: pointer;
   font-weight: 500;
+  font-size: 14px;
   transition: background-color 0.2s;
 }
 
 .add-token-button:hover {
-  background-color: #0A5BC2;
+  background-color: #8ab54d;
 }
 
 /* Responsive styles */
