@@ -1,0 +1,254 @@
+.watchlist-container {
+  margin-top: 2rem;
+}
+
+.watchlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.watchlist-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.refresh-button {
+  background-color: #0E76FD;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover {
+  background-color: #0A5BC2;
+}
+
+.table-container {
+  overflow-x: auto;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.watchlist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.watchlist-table th,
+.watchlist-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.watchlist-table th {
+  font-weight: 600;
+  color: #aaa;
+  background-color: #222;
+}
+
+.token-cell {
+  display: flex;
+  align-items: center;
+}
+
+.token-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.75rem;
+  border-radius: 50%;
+}
+
+.token-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.token-name {
+  font-weight: 500;
+}
+
+.token-symbol {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.positive {
+  color: #4caf50;
+}
+
+.negative {
+  color: #f44336;
+}
+
+.sparkline-cell {
+  padding: 0.5rem;
+}
+
+.holdings-cell {
+  min-width: 100px;
+}
+
+.holdings-display {
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.holdings-display:hover {
+  background-color: #3a3a3a;
+}
+
+.holdings-edit {
+  display: flex;
+  align-items: center;
+}
+
+.holdings-edit input {
+  width: 80px;
+  padding: 0.25rem;
+  margin-right: 0.5rem;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: white;
+}
+
+.holdings-edit button {
+  background-color: #0E76FD;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.three-dots-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.three-dots-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.popup-menu {
+  position: absolute;
+  right: 0;
+  background-color: #333;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  z-index: 10;
+  min-width: 150px;
+}
+
+.popup-menu-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.popup-menu-item:hover {
+  background-color: #444;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: #f44336;
+  border: 1px solid #f44336;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-button:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.pagination button {
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page-info {
+  margin: 0 1rem;
+  color: #aaa;
+}
+
+/* States */
+.loading-state,
+.error-state,
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.error-state {
+  color: #f44336;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .watchlist-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .refresh-button {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .watchlist-table th,
+  .watchlist-table td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .token-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
