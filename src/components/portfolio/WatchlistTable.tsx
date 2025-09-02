@@ -19,13 +19,13 @@ const WatchlistTable = () => {
   const watchlist = useAppSelector(selectWatchlist);
   const isLoading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [editingTokenId, setEditingTokenId] = useState<string | null>(null);
   const [holdingsInput, setHoldingsInput] = useState<string>('');
   const [isAddTokenModalOpen, setIsAddTokenModalOpen] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
-  
+
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,20 +36,20 @@ const WatchlistTable = () => {
         }
       }
     };
-    
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [activeMenuId]);
-  
+
   // Pagination settings
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const totalPages = Math.ceil(watchlist.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentTokens = watchlist.slice(startIndex, endIndex);
-  
+
   // Format currency
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -59,7 +59,7 @@ const WatchlistTable = () => {
       maximumFractionDigits: 6,
     }).format(value);
   };
-  
+
   // Handle holdings update
   const handleHoldingsUpdate = (id: string) => {
     const holdings = parseFloat(holdingsInput);
@@ -69,7 +69,7 @@ const WatchlistTable = () => {
       setHoldingsInput('');
     }
   };
-  
+
   // Handle refresh prices
   const handleRefreshPrices = async () => {
     try {
@@ -81,15 +81,15 @@ const WatchlistTable = () => {
       console.error('Error refreshing prices:', error);
     }
   };
-  
+
   // Render sparkline chart using SVG
   const renderSparkline = (prices: number[]) => {
     if (!prices || prices.length === 0) return null;
-    
+
     const min = Math.min(...prices);
     const max = Math.max(...prices);
     const range = max - min || 1; // Avoid division by zero
-    
+
     const width = 120;
     const height = 40;
     const points = prices.map((price, i) => {
@@ -97,11 +97,11 @@ const WatchlistTable = () => {
       const y = height - ((price - min) / range) * height;
       return `${x},${y}`;
     }).join(' ');
-    
+
     // Determine color based on trend
     const isPositive = prices[0] <= prices[prices.length - 1];
     const strokeColor = isPositive ? '#4caf50' : '#f44336';
-    
+
     return (
       <svg width={width} height={height} className="sparkline">
         <polyline
@@ -113,17 +113,17 @@ const WatchlistTable = () => {
       </svg>
     );
   };
-  
+
   // If loading
   if (isLoading) {
     return <div className="loading-state">Loading watchlist data...</div>;
   }
-  
+
   // If error
   if (error) {
     return <div className="error-state">Error: {error}</div>;
   }
-  
+
   // If empty watchlist
   if (watchlist.length === 0) {
     return (
@@ -139,7 +139,7 @@ const WatchlistTable = () => {
         <div className="empty-state">
           <p>Your watchlist is empty. Add tokens to get started.</p>
         </div>
-        
+
         <AddTokenModal
           isOpen={isAddTokenModalOpen}
           onClose={() => setIsAddTokenModalOpen(false)}
@@ -147,7 +147,7 @@ const WatchlistTable = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="watchlist-container">
       <div className="watchlist-header">
@@ -164,7 +164,7 @@ const WatchlistTable = () => {
           </button>
         </div>
       </div>
-      
+
       <div className="table-container">
         <table className="watchlist-table">
           <thead>
@@ -185,7 +185,7 @@ const WatchlistTable = () => {
                   <img src={token.image} alt={token.name} className="token-icon" />
                   <div className="token-info">
                     <div className="token-name">{token.name}</div>
-                    <div className="token-symbol">{token.symbol.toUpperCase()}</div>
+                    <div className="token-symbol">({token.symbol.toUpperCase()})</div>
                   </div>
                 </td>
                 <td>{formatCurrency(token.current_price)}</td>
@@ -222,7 +222,7 @@ const WatchlistTable = () => {
                 <td>{formatCurrency(token.value)}</td>
                 <td>
                   <div className="three-dots-menu">
-                    <button 
+                    <button
                       className="three-dots-button"
                       onClick={() => setActiveMenuId(activeMenuId === token.id ? null : token.id)}
                     >
@@ -230,7 +230,7 @@ const WatchlistTable = () => {
                     </button>
                     {activeMenuId === token.id && (
                       <div className="popup-menu">
-                        <button 
+                        <button
                           className="popup-menu-item"
                           onClick={() => {
                             setEditingTokenId(token.id);
@@ -240,7 +240,7 @@ const WatchlistTable = () => {
                         >
                           Edit Holdings
                         </button>
-                        <button 
+                        <button
                           className="popup-menu-item"
                           onClick={() => {
                             dispatch(removeFromWatchlist(token.id));
@@ -258,27 +258,36 @@ const WatchlistTable = () => {
           </tbody>
         </table>
       </div>
-      
+
       {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="pagination">
+      
+      <div className="pagination-container">
+        {/* Left side: results info */}
+        <div className="results-info">
+          {startIndex + 1} — {Math.min(endIndex, watchlist.length)} of {watchlist.length} results
+        </div>
+
+        {/* Right side: page info + prev/next */}
+        <div className="page-controls">
+          <span className="page-info">
+            {currentPage} of {totalPages} pages
+          </span>
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
+            className="prev-next"
           >
-            Previous
+            Prev
           </button>
-          <span className="page-info">
-            Page {currentPage} of {totalPages}
-          </span>
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
+            className="prev-next"
           >
             Next
           </button>
         </div>
-      )}
+      </div>
       
       <AddTokenModal
         isOpen={isAddTokenModalOpen}

@@ -9,7 +9,7 @@
   margin-bottom: 1rem;
 }
 
-.watchlist-title{
+.watchlist-title {
   display: flex;
   justify-content: space-around;
   width: 13%;
@@ -64,6 +64,8 @@
   overflow-x: auto;
   background-color: #212124;
   border-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -72,8 +74,10 @@
   border-collapse: collapse;
 }
 
-.watchlist-table thead, tbody {
+.watchlist-table thead,
+tbody {
   border: 3px solid #ffffff08;
+  border-bottom: 0px;
 }
 
 .watchlist-table th,
@@ -232,23 +236,42 @@
 /* Pagination */
 .pagination {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   margin-top: 1.5rem;
   padding: 0 1rem;
+  gap: 8px;
 }
 
 .pagination button {
   background-color: #27272A;
   color: white;
   border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  margin: 0 0.25rem;
+  border-radius: 8px;
+  padding: 8px 16px;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.2s;
-  min-width: 80px;
+  min-width: 90px;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-number {
+  min-width: 40px !important;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+.page-number.active {
+  background-color: #0E76FD;
 }
 
 .pagination button:disabled {
@@ -262,8 +285,62 @@
 }
 
 .page-info {
-  margin: 0 1rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  font-size: 0.9rem;
   color: #aaa;
+  background-color: #212124;
+  border: 3px solid #ffffff08;
+  border-radius: 6px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.results-info {
+  font-size: 13px;
+  font-weight: 500;
+  color: #A1A1AA;
+}
+
+.page-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-info {
+  font-size: 13px;
+  font-weight: 500;
+  color: #A1A1AA;
+}
+
+.prev-next {
+  background: none;
+  border: none;
+  color: #A1A1AA;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.prev-next:hover:not(:disabled) {
+  background-color: #2e2e32;
+}
+
+.prev-next:disabled {
+  color: #666;
+  cursor: not-allowed;
 }
 
 /* States */
@@ -287,17 +364,17 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .refresh-button {
     margin-top: 1rem;
     width: 100%;
   }
-  
+
   .watchlist-table th,
   .watchlist-table td {
     padding: 0.75rem 0.5rem;
   }
-  
+
   .token-icon {
     width: 24px;
     height: 24px;
