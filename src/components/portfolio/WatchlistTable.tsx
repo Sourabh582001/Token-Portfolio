@@ -12,6 +12,7 @@ import AddTokenModal from '../modals/AddTokenModal';
 import './WatchlistTable.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faRotate } from '@fortawesome/free-solid-svg-icons';
+import starIcon from '../../assets/images/star.svg';
 
 const WatchlistTable = () => {
   const dispatch = useAppDispatch();
@@ -126,8 +127,23 @@ const WatchlistTable = () => {
   // If empty watchlist
   if (watchlist.length === 0) {
     return (
-      <div className="empty-state">
-        <p>Your watchlist is empty. Add tokens to get started.</p>
+      <div className="watchlist-container">
+        <div className="watchlist-header">
+          <h2>Watchlist</h2>
+          <div className="watchlist-actions">
+            <button className="add-token-button" onClick={() => setIsAddTokenModalOpen(true)}>
+              <FontAwesomeIcon icon={faPlus} /> Add Token
+            </button>
+          </div>
+        </div>
+        <div className="empty-state">
+          <p>Your watchlist is empty. Add tokens to get started.</p>
+        </div>
+        
+        <AddTokenModal
+          isOpen={isAddTokenModalOpen}
+          onClose={() => setIsAddTokenModalOpen(false)}
+        />
       </div>
     );
   }
@@ -135,7 +151,10 @@ const WatchlistTable = () => {
   return (
     <div className="watchlist-container">
       <div className="watchlist-header">
-        <h2>Watchlist</h2>
+        <div className="watchlist-title">
+          <img src={starIcon} alt="Token Portfolio" className="star-icon" />
+          <h2>Watchlist</h2>
+        </div>
         <div className="watchlist-actions">
           <button className="refresh-button" onClick={handleRefreshPrices}>
             <FontAwesomeIcon icon={faRotate} /> Refresh Prices
@@ -166,7 +185,7 @@ const WatchlistTable = () => {
                   <img src={token.image} alt={token.name} className="token-icon" />
                   <div className="token-info">
                     <div className="token-name">{token.name}</div>
-                    <div className="token-symbol">{token.symbol}</div>
+                    <div className="token-symbol">{token.symbol.toUpperCase()}</div>
                   </div>
                 </td>
                 <td>{formatCurrency(token.current_price)}</td>

@@ -50,7 +50,7 @@ const PortfolioCard = () => {
       }
       
       // Prepare data for chart
-      const labels = tokensWithHoldings.map((token) => token.symbol);
+      const labels = tokensWithHoldings.map((token) => `${token.symbol}`);
       const data = tokensWithHoldings.map((token) => token.value);
       
       // Generate colors based on token index
