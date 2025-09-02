@@ -56,9 +56,6 @@ const Portfolio = () => {
   
   return (
     <div className="portfolio-page">
-      <div className="portfolio-header">
-        <h1>Portfolio</h1>
-      </div>
       
       <PortfolioCard />
       

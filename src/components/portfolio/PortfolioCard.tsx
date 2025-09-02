@@ -91,8 +91,10 @@ const PortfolioCard = () => {
   return (
     <div className="portfolio-card">
       <div className="portfolio-info">
-        <h2>Portfolio Total</h2>
-        <div className="portfolio-value">{formatCurrency(portfolioTotal)}</div>
+        <div>
+          <h2 className='portfolio-title'>Portfolio Total</h2>
+          <div className="portfolio-value">{formatCurrency(portfolioTotal)}</div>
+        </div>
         <div className="last-updated">
           Last updated: {formattedLastUpdated}
         </div>
