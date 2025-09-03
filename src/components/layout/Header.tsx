@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import './Header.css';
 import walletIcon from '../../assets/images/wallet.svg';
 import tokenPortfolioIcon from '../../assets/images/token-portfolio.svg';
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="header">
@@ -72,14 +70,6 @@ const Header = () => {
           </div>
           
           <div className="mobile-menu-toggle">
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? 'Close' : 'Menu'}
-            </button>
-          </div>
-        </div>
-        
-        {isMobileMenuOpen && (
-          <div className="mobile-nav">
             <ConnectButton.Custom>
               {({
                 account,
@@ -108,7 +98,7 @@ const Header = () => {
                         return (
                           <button 
                             onClick={openConnectModal} 
-                            className="connect-wallet-button"
+                            className="connect-wallet-button mobile-connect-button"
                           >
                             <img src={walletIcon} alt="Wallet" className="wallet-icon" />
                             Connect Wallet
@@ -121,10 +111,6 @@ const Header = () => {
                           <button onClick={openChainModal} className="chain-button">
                             {chain.name}
                           </button>
-
-                          <button onClick={openAccountModal} className="account-button">
-                            {account.displayName}
-                          </button>
                         </div>
                       );
                     })()}
@@ -133,7 +119,9 @@ const Header = () => {
               }}
             </ConnectButton.Custom>
           </div>
-        )}
+        </div>
+        
+
       </div>
     </header>
   );

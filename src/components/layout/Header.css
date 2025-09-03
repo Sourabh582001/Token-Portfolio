@@ -90,12 +90,9 @@
     display: block;
   }
   
-  .mobile-menu-toggle button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+  .mobile-connect-button {
+    font-size: 0.9rem;
+    padding: 4px 8px 4px 8px;
   }
   
   .mobile-nav {
@@ -103,5 +100,9 @@
     flex-direction: column;
     padding: 1rem 0;
     align-items: center;
+  }
+
+  .logo h1 {
+    font-size: 20px;
   }
 }

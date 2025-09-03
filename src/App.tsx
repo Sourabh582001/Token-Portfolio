@@ -7,6 +7,7 @@ import { config } from './utils/walletConfig';
 import Layout from './components/layout/Layout';
 import Portfolio from './components/portfolio/Portfolio';
 import './App.css';
+import './rainbowkit-override.css'; // Import custom RainbowKit style overrides
 
 // Create a client
 const queryClient = new QueryClient();

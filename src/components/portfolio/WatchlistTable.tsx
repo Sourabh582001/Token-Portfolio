@@ -160,7 +160,7 @@ const WatchlistTable = () => {
             <span className="refresh-icon">
               <FontAwesomeIcon icon={faRotate} />
             </span>
-            Refresh Prices
+            <span>Refresh Prices</span>
           </button>
           <button className="add-token-button" onClick={() => setIsAddTokenModalOpen(true)}>
             <FontAwesomeIcon icon={faPlus} /> Add Token

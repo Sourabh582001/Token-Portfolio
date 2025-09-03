@@ -1,0 +1,18 @@
+/* RainbowKit Modal Override Styles */
+
+/* Target the RainbowKit modal on mobile screens */
+@media (max-width: 768px) {
+  /* Override the modal width to be 90% instead of 100% */
+  [data-rk] div[role="dialog"] > div {
+    max-width: 100%;
+    overflow-x: scroll;
+    height: 65vh;
+    top: -180px;
+  }
+
+    [data-rk] ._1ckjpok7 {
+      padding-bottom: 0px;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+}

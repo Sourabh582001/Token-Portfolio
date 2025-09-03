@@ -124,7 +124,7 @@ tbody {
   color: #A1A1AA;
 }
 
-.token-price{
+.token-price {
   color: #A1A1AA;
 }
 
@@ -162,7 +162,7 @@ tbody {
   background-color: #27272A;
 }
 
-.token-value{
+.token-value {
   color: #F4F4F5;
 }
 
@@ -246,7 +246,7 @@ tbody {
   color: #FB7185;
 }
 
-.edit-holdings{
+.edit-holdings {
   border-bottom: 1px solid #FFFFFF14;
 }
 
@@ -393,22 +393,30 @@ tbody {
 /* Mobile styles */
 @media (max-width: 768px) {
   .watchlist-header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    margin-bottom: 20px;
   }
-
+  
+  .refresh-button span:not(.refresh-icon) {
+    display: none;
+  }
+  
   .refresh-button {
-    margin-top: 1rem;
-    width: 100%;
+    padding: 8px;
   }
+}
 
-  .watchlist-table th,
-  .watchlist-table td {
-    padding: 0.75rem 0.5rem;
-  }
+.watchlist-table th,
+.watchlist-table td {
+  padding: 0.75rem 0.5rem;
+}
 
-  .token-icon {
-    width: 24px;
-    height: 24px;
-  }
+.token-icon {
+  width: 24px;
+  height: 24px;
+}
+
+h2 {
+  margin-left: 8px;
 }
