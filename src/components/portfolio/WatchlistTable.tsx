@@ -11,7 +11,7 @@ import { getWatchlistData } from '../../services/coinGeckoService';
 import AddTokenModal from '../modals/AddTokenModal';
 import './WatchlistTable.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faRotate } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faRotate, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import starIcon from '../../assets/images/star.svg';
 
 const WatchlistTable = () => {
@@ -157,7 +157,10 @@ const WatchlistTable = () => {
         </div>
         <div className="watchlist-actions">
           <button className="refresh-button" onClick={handleRefreshPrices}>
-            <FontAwesomeIcon icon={faRotate} /> Refresh Prices
+            <span className="refresh-icon">
+              <FontAwesomeIcon icon={faRotate} />
+            </span>
+            Refresh Prices
           </button>
           <button className="add-token-button" onClick={() => setIsAddTokenModalOpen(true)}>
             <FontAwesomeIcon icon={faPlus} /> Add Token
@@ -188,7 +191,7 @@ const WatchlistTable = () => {
                     <div className="token-symbol">({token.symbol.toUpperCase()})</div>
                   </div>
                 </td>
-                <td>{formatCurrency(token.current_price)}</td>
+                <td className="token-price">{formatCurrency(token.current_price)}</td>
                 <td className={token.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}>
                   {token.price_change_percentage_24h?.toFixed(2)}%
                 </td>
@@ -219,7 +222,7 @@ const WatchlistTable = () => {
                     </div>
                   )}
                 </td>
-                <td>{formatCurrency(token.value)}</td>
+                <td className="token-value">{formatCurrency(token.value)}</td>
                 <td>
                   <div className="three-dots-menu">
                     <button
@@ -231,23 +234,23 @@ const WatchlistTable = () => {
                     {activeMenuId === token.id && (
                       <div className="popup-menu">
                         <button
-                          className="popup-menu-item"
+                          className="popup-menu-item edit-holdings"
                           onClick={() => {
                             setEditingTokenId(token.id);
                             setHoldingsInput(token.holdings.toString());
                             setActiveMenuId(null);
                           }}
                         >
-                          Edit Holdings
+                          <FontAwesomeIcon icon={faPen} /> Edit Holdings
                         </button>
                         <button
-                          className="popup-menu-item"
+                          className="popup-menu-item remove-item"
                           onClick={() => {
                             dispatch(removeFromWatchlist(token.id));
                             setActiveMenuId(null);
                           }}
                         >
-                          Remove
+                          <FontAwesomeIcon icon={faTrash} /> Remove
                         </button>
                       </div>
                     )}

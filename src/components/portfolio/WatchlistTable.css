@@ -41,7 +41,7 @@
 
 .refresh-button {
   background-color: #27272A;
-  color: white;
+  color: #F4F4F5;
   border: none;
   border-radius: 6px;
   padding: 8px 12px 8px 12px;
@@ -58,6 +58,10 @@
 
 .refresh-button:hover {
   background-color: #56565b;
+}
+
+.refresh-icon {
+  color: #A1A1AA;
 }
 
 .table-container {
@@ -117,6 +121,11 @@ tbody {
 
 .token-name {
   font-weight: 500;
+  color: #A1A1AA;
+}
+
+.token-price{
+  color: #A1A1AA;
 }
 
 .token-symbol {
@@ -146,10 +155,15 @@ tbody {
   padding: 0.25rem;
   border-radius: 4px;
   transition: background-color 0.2s;
+  color: #F4F4F5;
 }
 
 .holdings-display:hover {
   background-color: #27272A;
+}
+
+.token-value{
+  color: #F4F4F5;
 }
 
 .holdings-edit {
@@ -195,9 +209,9 @@ tbody {
 .popup-menu {
   position: absolute;
   right: 0;
-  background-color: #333;
+  background-color: #27272A;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
+  border-radius: 8px;
   z-index: 10;
   min-width: 150px;
 }
@@ -205,7 +219,9 @@ tbody {
 .popup-menu-item {
   padding: 10px 15px;
   cursor: pointer;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   width: 100%;
   text-align: left;
   border: none;
@@ -216,6 +232,22 @@ tbody {
 
 .popup-menu-item:hover {
   background-color: #444;
+}
+
+.edit-holdings {
+  color: #A1A1AA;
+}
+
+.remove-item {
+  color: #FDA4AF;
+}
+
+.remove-item svg {
+  color: #FB7185;
+}
+
+.edit-holdings{
+  border-bottom: 1px solid #FFFFFF14;
 }
 
 .remove-button {
