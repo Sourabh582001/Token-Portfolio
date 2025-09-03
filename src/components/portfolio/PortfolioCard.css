@@ -9,7 +9,7 @@
 }
 
 .portfolio-info {
-  flex: 1;
+  flex: 0.55;
   min-width: 250px;
   display: flex;
   flex-direction: column;
@@ -23,12 +23,9 @@
 }
 
 .portfolio-chart {
-  flex: 1;
-  min-width: 250px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 0.2;
+  max-width: 180px;
+  height: 260px;
 }
 
 .portfolio-value {
@@ -41,6 +38,29 @@
 .last-updated {
   font-size: 0.9rem;
   color: #888;
+}
+
+.custom-legend {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: 20px;
+  margin-top: 60px;
+}
+
+.legend-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.legend-label {
+  font-weight: 500;
+}
+
+.legend-value {
+  color: #aaa;
 }
 
 /* Mobile styles */

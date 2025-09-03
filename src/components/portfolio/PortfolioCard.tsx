@@ -32,7 +32,7 @@ const PortfolioCard = () => {
     if (watchlist.length > 0) {
       // Filter out tokens with no holdings
       const tokensWithHoldings = watchlist.filter((token) => token.holdings > 0);
-      
+
       // If no tokens have holdings, show empty chart
       if (tokensWithHoldings.length === 0) {
         setChartData({
@@ -48,26 +48,26 @@ const PortfolioCard = () => {
         });
         return;
       }
-      
+
       // Prepare data for chart
-      const labels = tokensWithHoldings.map((token) => `${token.symbol}`);
+      const labels = tokensWithHoldings.map((token) => `${token.name},${token.symbol}`);
       const data = tokensWithHoldings.map((token) => token.value);
-      
+
       // Generate colors based on token index
       const backgroundColors = tokensWithHoldings.map((_, index) => {
         const hue = (index * 137.5) % 360; // Golden angle approximation for good distribution
         return `hsl(${hue}, 70%, 60%)`;
       });
-      
+
       const borderColors = backgroundColors.map(color => color.replace('60%', '50%'));
-      
+
       setChartData({
         labels,
         datasets: [
           {
             data,
             backgroundColor: backgroundColors,
-            borderColor: borderColors,
+            borderColor: ['#ffffff'],
             borderWidth: 1,
           },
         ],
@@ -100,6 +100,7 @@ const PortfolioCard = () => {
         </div>
       </div>
       <div className="portfolio-chart">
+        <h2 className='portfolio-title'>Portfolio Total</h2>
         {chartData && (
           <Doughnut
             data={chartData}
@@ -108,19 +109,11 @@ const PortfolioCard = () => {
               maintainAspectRatio: false,
               plugins: {
                 legend: {
-                  position: 'right',
-                  labels: {
-                    color: '#ffffff',
-                    usePointStyle: true,
-                    padding: 20,
-                    font: {
-                      size: 12,
-                    },
-                  },
+                  display: false, // ❌ disable default legend
                 },
                 tooltip: {
                   callbacks: {
-                    label: function(context) {
+                    label: function (context) {
                       const label = context.label || '';
                       const value = context.raw as number;
                       const percentage = ((value / portfolioTotal) * 100).toFixed(2);
@@ -129,11 +122,33 @@ const PortfolioCard = () => {
                   },
                 },
               },
-              cutout: '70%',
+              cutout: '60%',
             }}
           />
         )}
       </div>
+      {/*  Custom Legend */}
+      {chartData && chartData.labels && (
+        <div className="custom-legend">
+          {chartData.labels.map((label: string, index: number) => {
+            const value = chartData.datasets[0].data[index];
+            const percentage = ((value / portfolioTotal) * 100).toFixed(1);
+            const color = chartData.datasets[0].backgroundColor[index];
+
+            // Split name and symbol if your label is "Bitcoin,BTC"
+            const [name, symbol] = label.split(",");
+
+            return (
+              <div key={index} className="legend-item">
+                <span className="legend-label" style={{ color }}>
+                  {name} ({symbol})
+                </span>
+                <span className="legend-value">{percentage}%</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
