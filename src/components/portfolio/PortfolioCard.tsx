@@ -59,7 +59,7 @@ const PortfolioCard = () => {
         return `hsl(${hue}, 70%, 60%)`;
       });
 
-      const borderColors = backgroundColors.map(color => color.replace('60%', '50%'));
+      // Removed unused borderColors variable
 
       setChartData({
         labels,

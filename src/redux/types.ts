@@ -27,4 +27,4 @@ interface RootState {
 type AppDispatch = any;
 
 // Export all types
-export { Token, TokenState, RootState, AppDispatch };
+export type { Token, TokenState, RootState, AppDispatch };

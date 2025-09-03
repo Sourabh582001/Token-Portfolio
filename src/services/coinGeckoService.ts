@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Token } from '../redux/types.js';
+import type { Token } from '../redux/types.js';
 
 const API_URL = 'https://api.coingecko.com/api/v3';
 

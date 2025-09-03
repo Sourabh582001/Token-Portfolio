@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tokenReducer from './slices/tokenSlice';
-import { RootState, AppDispatch } from './types.js';
+import type { RootState, AppDispatch } from './types.js';
 
 // Create the store
 export const store = configureStore({
@@ -10,4 +10,4 @@ export const store = configureStore({
 });
 
 // Re-export types
-export { RootState, AppDispatch };
+export type { RootState, AppDispatch };

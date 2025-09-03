@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { setLoading, setError, setWatchlist, selectLoading } from '../../redux/slices/tokenSlice';
+import { useAppDispatch } from '../../redux/hooks';
+import { setLoading, setError, setWatchlist } from '../../redux/slices/tokenSlice';
 import { getTokensByIds } from '../../services/coinGeckoService';
 import PortfolioCard from './PortfolioCard';
 import WatchlistTable from './WatchlistTable';
@@ -9,7 +9,6 @@ import './Portfolio.css';
 
 const Portfolio = () => {
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(selectLoading);
   
   const [isAddTokenModalOpen, setIsAddTokenModalOpen] = useState(false);
   
@@ -30,7 +29,7 @@ const Portfolio = () => {
             const tokens = await getTokensByIds(tokenIds);
             
             // Restore holdings from saved state
-            const tokensWithHoldings = tokens.map((token) => {
+            const tokensWithHoldings = tokens.map((token: { id: string; current_price: number }) => {
               const savedToken = parsedState.watchlist.find((t: any) => t.id === token.id);
               return {
                 ...token,

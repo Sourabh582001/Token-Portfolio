@@ -19,7 +19,6 @@ const Header = () => {
               {({
                 account,
                 chain,
-                openAccountModal,
                 openChainModal,
                 openConnectModal,
                 mounted,
@@ -57,7 +56,7 @@ const Header = () => {
                             {chain.name}
                           </button>
 
-                          <button onClick={openAccountModal} className="account-button">
+                          <button className="account-button">
                             {account.displayName}
                           </button>
                         </div>
@@ -74,7 +73,6 @@ const Header = () => {
               {({
                 account,
                 chain,
-                openAccountModal,
                 openChainModal,
                 openConnectModal,
                 mounted,

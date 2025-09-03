@@ -1,11 +1,11 @@
 // Token interface
-export const Token = {};
+export type Token = {};
 
 // Redux store types
-export const TokenState = {};
+export type TokenState = {};
 
 // RootState interface
-export const RootState = {};
+export type RootState = {};
 
 // AppDispatch type
-export const AppDispatch = {};
+export type AppDispatch = {};

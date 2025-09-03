@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState, Token, TokenState } from '../types.js';
+import type { RootState, Token, TokenState } from '../types.js';
 
 const initialState: TokenState = {
   watchlist: [],
